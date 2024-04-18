@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 import plost
 
-st.title('🎈 App Name')
+st.title('Best Dash💖')
 
-st.write('Hello world!')
+st.write('This is gonna be XAI dashboard')
 
 # Row A
 st.markdown('### Metrics')
