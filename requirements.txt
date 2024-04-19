@@ -4,3 +4,4 @@ plost
 scikit-learn==1.2.2
 shap
 matplotlib
+shapash
