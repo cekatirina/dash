@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import plost
 import pickle
-from skikit-learn.ensemble import GradientBoostingClassifier
 
 st.title('Best Dash💖')
 
@@ -22,7 +21,7 @@ vars_df = pd.DataFrame(vars, columns=['Переменная', 'Описание'
 st.table(vars_df)
 
 # Row B
-df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/prom.csv')
 
 c1, c2 = st.columns((7,3))
 with c1:
@@ -34,8 +33,3 @@ with c2:
 
 # Row C
 modelGB = pickle.load(open('modelGB.pkl', 'rb'))
-prediction = modelGB.predict(X_test)
-prediction_proba = modelGB.predict_proba(X_test)
-
-st.subheader('Prediction')
-st.write(prediction[10])
