@@ -3,6 +3,8 @@ import pandas as pd
 import plost
 import pickle
 import sklearn
+import shap
+import matplotlib.pyplot as plt
 
 st.title('Best Dash💖')
 
@@ -24,18 +26,18 @@ st.table(vars_df)
 # Row B
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 
-c1, c2 = st.columns((7,3))
-with c1:
-    st.markdown('### Heatmap')
-    c1.metric("Temperature", df["age"].mean(), "1.2 °F")
-with c2:
-    st.markdown('### Donut chart')
-    c2.metric("Temperature", df["age"].mean(), "1.2 °F")
-
-# Row C
 modelGB = pickle.load(open('modelGB.pkl', 'rb'))
 prediction = modelGB.predict(df)
 prediction_proba = modelGB.predict_proba(df)
 
 st.subheader('Prediction')
 st.write(prediction_proba[10])
+
+# Row C
+explainer = shap.Explainer(modelGB)
+shap_values = explainer.shap_values(df)
+
+st.header('Feature Importance')
+plt.title('Feature importance based on SHAP values')
+shap.summary_plot(shap_values, df, plot_type='bar')
+st.pyplot(bbox_inches='tight')
