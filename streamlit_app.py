@@ -7,6 +7,7 @@ import pickle
 import sklearn
 import shap
 import matplotlib.pyplot as plt
+from shapash.explainer.smart_explainer import SmartExplainer
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 modelGB = pickle.load(open('modelGB.pkl', 'rb'))
@@ -39,5 +40,13 @@ with col2:
         st.pyplot(bbox_inches='tight')
 
 # Row B
+response_dict = {0: 'Not promoted', 1:' Promoted'}
+xpl = SmartExplainer(model = modelGB,
+                     label_dict=response_dict) # Optional parameters, dicts specify labels
+xpl.compile(x=df)
+xpl.plot.contribution_plot(col='avg_training_score', max_points=9276)
+st.pyplot(bbox_inches='tight')
+
+# Row C
 st.subheader('Prediction')
 st.write(prediction_proba[10])
