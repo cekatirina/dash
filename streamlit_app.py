@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plost
 import pickle
-from sklearn.ensemble import GradientBoostingClassifier
+import sklearn
 
 st.title('Best Dash💖')
 
