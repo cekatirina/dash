@@ -38,4 +38,4 @@ prediction = modelGB.predict(df)
 prediction_proba = modelGB.predict_proba(df)
 
 st.subheader('Prediction')
-st.write(prediction[10])
+st.write(prediction_proba[10])
