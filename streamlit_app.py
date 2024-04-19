@@ -17,9 +17,7 @@ vars = [['education', 'Уровень образования сотрудник�
         ['department_', 'Отдел, в котором работает сотрудник']]
 vars_df = pd.DataFrame(vars, columns=['Переменная', 'Описание'])
 
-col1, col2 = st.columns(2)
-col1.table(vars_df)
-col2.metric("Humidity", "86%", "4%")
+st.table(vars_df)
 
 # Row B
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/prom.csv')
