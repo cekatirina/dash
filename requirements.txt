@@ -1,5 +1,5 @@
 streamlit>=1.26.0
 pandas
 plost
-scikit-learn==1.3.0
+scikit-learn
 pickle
