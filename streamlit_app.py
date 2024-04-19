@@ -34,8 +34,8 @@ with c2:
 
 # Row C
 modelGB = pickle.load(open('modelGB.pkl', 'rb'))
-prediction = modelGB.predict(X_test)
-prediction_proba = modelGB.predict_proba(X_test)
+prediction = modelGB.predict(df)
+prediction_proba = modelGB.predict_proba(df)
 
 st.subheader('Prediction')
 st.write(prediction[10])
