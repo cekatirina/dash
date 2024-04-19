@@ -1,4 +1,5 @@
 streamlit>=1.26.0
 pandas
 plost
+pickle
 scikit-learn==1.3.0
