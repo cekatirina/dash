@@ -9,13 +9,12 @@ st.write('This is gonna be XAI dashboard')
 # Row A
 st.markdown('### Metrics')
 
-vars = [['education', 'Уровень образования сотрудника'], ['gender', 'Пол сотрудника']]
+vars = [['education', 'Уровень образования сотрудника'], ['gender', 'Пол сотрудника'], ['no_of_trainings', 'Кол-во тренингов, которые прошел сотрудник за последний год']]
 vars_df = pd.DataFrame(vars, columns=['Переменная', 'Описание'])
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 col1.table(vars_df)
-col2.metric("Wind", "9 mph", "-8%")
-col3.metric("Humidity", "86%", "4%")
+col2.metric("Humidity", "86%", "4%")
 
 # Row B
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/prom.csv')
