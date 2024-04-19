@@ -44,6 +44,8 @@ response_dict = {0: 'Not promoted', 1:' Promoted'}
 xpl = SmartExplainer(model = modelGB,
                      label_dict=response_dict) # Optional parameters, dicts specify labels
 xpl.compile(x=df)
+
+st.subheader('Shapash')
 xpl.plot.contribution_plot(col='avg_training_score', max_points=9276)
 st.pyplot(bbox_inches='tight')
 
