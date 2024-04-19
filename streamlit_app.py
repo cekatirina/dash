@@ -28,13 +28,15 @@ vars = [['education', 'Уровень образования сотрудник�
         ['department_', 'Отдел, в котором работает сотрудник']]
 vars_df = pd.DataFrame(vars, columns=['Переменная', 'Описание'])
 
-st.markdown('### Metrics')
 col1, col2 = st.columns(2)
-col1.table(vars_df)
-
-plt.title('Feature importance based on SHAP values')
-shap.summary_plot(shap_values, df, plot_type='bar')
-col2.pyplot(bbox_inches='tight')
+with col1:
+        st.markdown('### Описание переменных')
+        st.table(vars_df)
+with col2:
+        st.markdown('### Важность предикторов')
+        plt.title('Feature importance based on SHAP values')
+        shap.summary_plot(shap_values, df, plot_type='bar')
+        st.pyplot(bbox_inches='tight')
 
 # Row B
 st.subheader('Prediction')
