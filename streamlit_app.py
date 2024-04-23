@@ -67,6 +67,5 @@ with tab2:
             st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)    
             dificulty = st.radio(
                     "Насколько сложно было...",
-                    ["1", "2", "3", "4", "5"],
-                    captions = ["Полностью не согласен", " ", " ", " ", "Полностью согласен"])        
+                    ["1", "2", "3", "4", "5"])        
             submit_button = st.form_submit_button(label="Отправить анкету")
