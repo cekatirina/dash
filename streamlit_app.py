@@ -21,6 +21,7 @@ tab1, tab2 = st.tabs(["Дэшборд", "Анкета"])
 with tab1:
         st.title('Best Dash💖')
         st.write('This is gonna be XAI dashboard')
+        
         # Row A
         vars = [['education', 'Уровень образования сотрудника'], ['gender', 'Пол сотрудника'], 
                 ['no_of_trainings', 'Кол-во тренингов, которые прошел сотрудник за последний год'],
@@ -37,7 +38,8 @@ with tab1:
                 st.markdown('### Важность предикторов')
                 plt.title('Feature importance based on SHAP values')
                 shap.summary_plot(shap_values, df, plot_type='bar')
-                st.pyplot(bbox_inches='tight')
+                st.pyplot()
+                
         # Row B
         response_dict = {0: 'Not promoted', 1:' Promoted'}
         xpl = SmartExplainer(model = modelGB,
@@ -45,7 +47,8 @@ with tab1:
         xpl.compile(x=df)
         st.subheader('Shapash')
         xpl.plot.contribution_plot(col='avg_training_score', max_points=9276)
-        st.pyplot(bbox_inches='tight')
+        st.pyplot()
+        
         # Row C
         st.subheader('Prediction')
         st.write(prediction_proba[10])
