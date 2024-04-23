@@ -63,13 +63,9 @@ with tab2:
             "5",
         ]
         with st.form(key="dash_form"):
-            name = st.text_input(label="ФИО*")
+            name = st.text_input(label="ФИО")
             dificulty = st.radio(
                     "Насколько сложно было...",
                     ["1", "2", "3", "4", "5"],
-                    captions = ["Полностью не согласен", " ", " ", " ", "Полностью согласен"])
-        
-            # Mark mandatory fields
-            st.markdown("**required*")
-        
+                    captions = ["Полностью не согласен", " ", " ", " ", "Полностью согласен"])        
             submit_button = st.form_submit_button(label="Отправить анкету")
