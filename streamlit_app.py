@@ -64,6 +64,7 @@ with tab2:
         ]
         with st.form(key="dash_form"):
             name = st.text_input(label="ФИО")
+            st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)    
             dificulty = st.radio(
                     "Насколько сложно было...",
                     ["1", "2", "3", "4", "5"],
