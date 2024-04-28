@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from shapash.explainer.smart_explainer import SmartExplainer
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
+df_prob = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test_prob.csv')
 modelGB = pickle.load(open('modelGB.pkl', 'rb'))
 prediction = modelGB.predict(df)
 prediction_proba = modelGB.predict_proba(df)
@@ -41,12 +42,8 @@ with tab1:
                 st.pyplot()
                 
         # Row B
-        response_dict = {0: 'Not promoted', 1:' Promoted'}
-        xpl = SmartExplainer(model = modelGB,
-                             label_dict=response_dict) # Optional parameters, dicts specify labels
-        xpl.compile(x=df)
-        st.subheader('Shapash')
-        xpl.plot.contribution_plot(col='avg_training_score', max_points=9276)
+        shap.dependence_plot("avg_training_score", shap_values, df_prob,
+                    feature_names=df_prob.columns, interaction_index="prom")
         st.pyplot()
         
         # Row C
