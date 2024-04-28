@@ -45,7 +45,7 @@ with tab1:
         st.markdown('### Важность предикторов')
         plt.title('Feature contribution based on SHAP values')
         shap.dependence_plot("avg_training_score", shap_values, df_prob,
-                    feature_names=df_prob.columns, interaction_index="prom")
+                    feature_names=df.columns, interaction_index="prom")
         st.pyplot()
         
         # Row C
