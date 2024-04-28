@@ -38,7 +38,8 @@ with tab1:
                 st.markdown('### Важность предикторов')
                 plt.title('Feature importance based on SHAP values')
                 shap.summary_plot(shap_values, df, plot_type='bar')
-                st.pyplot()
+                plt.subplots(figsize=(400, 200)
+                st.pyplot(fig)
                 
         # Row B
         response_dict = {0: 'Not promoted', 1:' Promoted'}
