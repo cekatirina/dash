@@ -42,8 +42,8 @@ with tab1:
                 st.pyplot()
                 
         # Row B
-        shap.dependence_plot("avg_training_score", shap_values, df_prob,
-                    feature_names=df_prob.columns, interaction_index="prom")
+        shap.dependence_plot("avg_training_score", shap_values, df,
+                    feature_names=df.columns, interaction_index="gender")
         st.pyplot()
         
         # Row C
