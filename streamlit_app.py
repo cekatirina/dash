@@ -13,10 +13,8 @@ df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_tes
 modelGB = pickle.load(open('modelGB.pkl', 'rb'))
 prediction = modelGB.predict(df)
 prediction_proba = modelGB.predict_proba(df)
-df_prob = df
-df_prob["no_prom"],df_prob["prom"] = prediction_proba[:,0], prediction_proba[:,1]
 explainer = shap.Explainer(modelGB)
-shap_values = explainer.shap_values(df_prob)
+shap_values = explainer.shap_values(df)
 
 tab1, tab2 = st.tabs(["Дэшборд", "Анкета"])
 
@@ -39,14 +37,14 @@ with tab1:
         with col2:
                 st.markdown('### Важность предикторов')
                 plt.title('Feature importance based on SHAP values')
-                shap.summary_plot(shap_values, df_prob, feature_names=df_prob.columns, plot_type='bar', max = 17)
+                shap.summary_plot(shap_values, df, plot_type='bar')
                 st.pyplot()
                 
         # Row B
         st.markdown('### Важность предикторов')
         plt.title('Feature contribution based on SHAP values')
-        shap.dependence_plot("avg_training_score", shap_values, df_prob,
-                    feature_names=df_prob.columns, interaction_index="prom")
+        shap.dependence_plot("avg_training_score", shap_values, df,
+                    feature_names=df.columns, interaction_index=prediction_proba)
         st.pyplot()
         
         # Row C
