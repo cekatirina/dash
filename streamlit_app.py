@@ -16,7 +16,7 @@ prediction_proba = modelGB.predict_proba(df)
 df_prob = df
 df_prob["no_prom"],df_prob["prom"] = prediction_proba[:,0], prediction_proba[:,1]
 explainer = shap.Explainer(modelGB)
-shap_values = explainer.shap_values(df)
+shap_values = explainer.shap_values(df_prob)
 
 tab1, tab2 = st.tabs(["Дэшборд", "Анкета"])
 
