@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 from shapash.explainer.smart_explainer import SmartExplainer
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
-df_prob = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test_prob.csv')
 modelGB = pickle.load(open('modelGB.pkl', 'rb'))
 prediction = modelGB.predict(df)
 prediction_proba = modelGB.predict_proba(df)
