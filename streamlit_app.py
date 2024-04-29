@@ -39,14 +39,14 @@ with tab1:
         with col2:
                 st.markdown('### Важность предикторов')
                 plt.title('Feature importance based on SHAP values')
-                shap.summary_plot(shap_values, df_prob, plot_type='bar', max = 17)
+                shap.summary_plot(shap_values, df_prob, feature_names=df_prob.columns, plot_type='bar', max = 17)
                 st.pyplot()
                 
         # Row B
         st.markdown('### Важность предикторов')
         plt.title('Feature contribution based on SHAP values')
         shap.dependence_plot("avg_training_score", shap_values, df_prob,
-                    feature_names=df.columns, interaction_index="prom")
+                    feature_names=df_prob.columns, interaction_index="prom")
         st.pyplot()
         
         # Row C
