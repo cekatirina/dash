@@ -40,7 +40,7 @@ with tab1:
                 plt.title('Feature importance based on SHAP values')
                 shap.summary_plot(shap_values, df, plot_type='bar')
                 st.pyplot()
-         with col2:
+         with col3:
                 st.markdown('### Важность предикторов')
                 plt.title('Feature contribution based on SHAP values')
                 shap.dependence_plot("avg_training_score", shap_values, df,
