@@ -24,9 +24,6 @@ example1 = example1.to_numpy()
 example2 = df.iloc[3842]
 example2 = example2.to_numpy()
 
-from explainerdashboard import ClassifierExplainer
-explainerdash = ClassifierExplainer(modelGB, df, y)
-
 tab1, tab2 = st.tabs(["Дэшборд", "Анкета"])
 
 with tab1:
@@ -69,8 +66,6 @@ with tab1:
                             base_values=explainer.expected_value[0],
                             data=example1,
                             feature_names=df.columns))
-                st.pyplot()
-                explainerdash.plot_pdp(col='age', index=1432)
                 st.pyplot()
         with c2:
                 st.markdown('### Кейс 2')
