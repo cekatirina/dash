@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from shapash.explainer.smart_explainer import SmartExplainer
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
+df_prob = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test_prob.csv')
 modelGB = pickle.load(open('modelGB.pkl', 'rb'))
 prediction = modelGB.predict(df)
 prediction_proba = modelGB.predict_proba(df)
@@ -43,8 +44,8 @@ with tab1:
         # Row B
         st.markdown('### Важность предикторов')
         plt.title('Feature contribution based on SHAP values')
-        shap.dependence_plot("avg_training_score", shap_values, df,
-                    feature_names=df.columns, interaction_index="gender")
+        shap.dependence_plot("avg_training_score", shap_values, df_prob,
+                    feature_names=df_prob.columns, interaction_index="prom")
         st.pyplot()
         
         # Row C
