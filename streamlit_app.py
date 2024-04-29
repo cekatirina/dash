@@ -38,7 +38,7 @@ with tab1:
                 ['length_of_service', 'Кол-во лет, которое сотрудник работает в компании'], ['awards_won', 'Кол-во выигранных наград'],
                 ['department_', 'Отдел, в котором работает сотрудник'], ['recruitment_channel_', 'Как человек попал в компанию (referred - через реферальную программу, sourcing - обычный поиск сотрудников)']]
         vars_df = pd.DataFrame(vars, columns=['Переменная', 'Описание'])
-        col1, col2, col3 = st.columns(3)
+        col1, col2 = st.columns(2)
         with col1:
                 st.markdown('### Описание переменных')
                 st.table(vars_df)
@@ -47,15 +47,12 @@ with tab1:
                 plt.title('Feature importance based on SHAP values')
                 shap.summary_plot(shap_values, df, plot_type='bar')
                 st.pyplot()
-        with col3:
-                st.markdown('### Важность предикторов')
-                plt.title('Feature contribution based on SHAP values')
-                shap.dependence_plot("avg_training_score", shap_values, df, feature_names=df.columns, interaction_index="gender")
-                st.pyplot()
         
         # Row B
-        st.subheader('Prediction')
-        st.write(prediction_proba[10])
+        st.markdown('### Важность предикторов')
+        plt.title('Feature contribution based on SHAP values')
+        shap.dependence_plot("avg_training_score", shap_values, df, feature_names=df.columns, interaction_index="gender")
+        st.pyplot()
 
         # Row C
         st.title('Best Dash💖')
