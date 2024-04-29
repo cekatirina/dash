@@ -50,6 +50,28 @@ with tab1:
         st.subheader('Prediction')
         st.write(prediction_proba[10])
 
+        # Row C
+        st.title('Best Dash💖')
+        c1, c2 = st.columns(2)
+        with c1:
+                st.markdown('### Кейс 1')
+                example1 = df.iloc[1432]
+                example1 = example1.to_numpy()
+                shap.waterfall_plot(shap.Explanation(values=shap_values[1432],
+                            base_values=explainer.expected_value[0],
+                            data=example1,
+                            feature_names=df.columns))
+                st.pyplot()
+        with c2:
+                st.markdown('### Кейс 2')
+                example2 = df.iloc[3842]
+                example2 = example2.to_numpy()
+                shap.waterfall_plot(shap.Explanation(values=shap_values[3842],
+                            base_values=explainer.expected_value[0],
+                            data=example2,
+                            feature_names=df.columns))
+                st.pyplot()
+
 with tab2:
         st.title('Best Dash💖')
         ANSWER_OPTIONS = [
