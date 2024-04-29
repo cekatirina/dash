@@ -17,6 +17,12 @@ prediction_proba = modelGB.predict_proba(df)
 explainer = shap.Explainer(modelGB)
 shap_values = explainer.shap_values(df)
 
+example1 = df.iloc[1432]
+example1 = example1.to_numpy()
+
+example2 = df.iloc[3842]
+example2 = example2.to_numpy()
+
 tab1, tab2 = st.tabs(["Дэшборд", "Анкета"])
 
 with tab1:
@@ -55,8 +61,6 @@ with tab1:
         c1, c2 = st.columns(2)
         with c1:
                 st.markdown('### Кейс 1')
-                example1 = df.iloc[1432]
-                example1 = example1.to_numpy()
                 shap.waterfall_plot(shap.Explanation(values=shap_values[1432],
                             base_values=explainer.expected_value[0],
                             data=example1,
@@ -64,8 +68,6 @@ with tab1:
                 st.pyplot()
         with c2:
                 st.markdown('### Кейс 2')
-                example2 = df.iloc[3842]
-                example2 = example2.to_numpy()
                 shap.waterfall_plot(shap.Explanation(values=shap_values[3842],
                             base_values=explainer.expected_value[0],
                             data=example2,
