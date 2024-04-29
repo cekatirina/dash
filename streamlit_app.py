@@ -27,7 +27,7 @@ example2 = example2.to_numpy()
 tab1, tab2 = st.tabs(["Дэшборд", "Анкета"])
 
 with tab1:
-        st.title('Best Dash💖')
+        st.title('Общая статистика по модели')
         st.write('This is gonna be XAI dashboard')
         
         # Row A
@@ -55,17 +55,17 @@ with tab1:
         st.pyplot()
 
         # Row C
-        st.title('Best Dash💖')
+        st.title('Информация по индивидуальным предсказаниям')
         c1, c2 = st.columns(2)
         with c1:
-                st.markdown('### Кейс 1')
+                st.markdown('### Кейс 1 (ID = 1432)')
                 shap.waterfall_plot(shap.Explanation(values=shap_values[1432],
                             base_values=explainer.expected_value[0],
                             data=example1,
                             feature_names=df.columns))
                 st.pyplot()
         with c2:
-                st.markdown('### Кейс 2')
+                st.markdown('### Кейс 2 (ID = 3842)')
                 shap.waterfall_plot(shap.Explanation(values=shap_values[3842],
                             base_values=explainer.expected_value[0],
                             data=example2,
