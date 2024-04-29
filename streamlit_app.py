@@ -43,7 +43,7 @@ with tab1:
                 st.markdown('### Описание переменных')
                 st.table(vars_df)
         with col2:
-                st.markdown('### Важность предикторов')
+                st.markdown('### Важность переменных')
                 plt.title('Feature importance based on SHAP values')
                 shap.summary_plot(shap_values, df, plot_type='bar')
                 st.pyplot()
