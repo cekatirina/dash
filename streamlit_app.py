@@ -64,7 +64,8 @@ with tab1:
                 shap.waterfall_plot(shap.Explanation(values=shap_values[1432],
                             base_values=explainer.expected_value[0],
                             data=example1,
-                            feature_names=df.columns))
+                            feature_names=df.columns,
+                            show = False))
                 st.pyplot()
         with c2:
                 st.markdown('### Пример 2 (ID = 3842)')
@@ -72,6 +73,7 @@ with tab1:
                             base_values=explainer.expected_value[0],
                             data=example2,
                             feature_names=df.columns))
+                plt.xlabel("SHAP значение")
                 st.pyplot()
 
 with tab2:
