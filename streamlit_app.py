@@ -31,6 +31,8 @@ with tab1:
         st.write('This is gonna be XAI dashboard')
         
         # Row A
+        with open('style.css') as f:
+                st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
         vars = [['education', 'Уровень образования сотрудника'], ['gender', 'Пол сотрудника'], 
                 ['no_of_trainings', 'Кол-во тренингов, которые прошел сотрудник за последний год'],
                 ['avg_training_score', 'Средняя оценка за пройденные тренинги'], ['age', 'Возраст сотрудника'], 
