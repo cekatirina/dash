@@ -77,18 +77,19 @@ with tab1:
                 st.pyplot()
 
 with tab2:
-        st.title('Best Dash💖')
+        st.title('Ваши впечатления от дэшборда')
         ANSWER_OPTIONS = [
             "1",
             "2",
             "3",
             "4",
             "5",
+            "6",
+            "7"
         ]
         with st.form(key="dash_form"):
-            name = st.text_input(label="ФИО")
             st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)    
             dificulty = st.radio(
-                    "Насколько сложно было...",
-                    ["1", "2", "3", "4", "5"])        
+                    "Модель обманчива",
+                    ANSWER_OPTIONS)        
             submit_button = st.form_submit_button(label="Отправить анкету")
