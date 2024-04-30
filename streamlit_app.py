@@ -88,7 +88,7 @@ with tab2:
             "7"
         ]
         with st.form(key="dash_form"):
-            st.markdown('Вам будет представлен ряд утвержений по поводу доверия модели, объяснение который вы изучили на дэшборде.')
+            st.markdown('Вам будет представлен ряд утвержений по поводу доверия модели, объяснение который вы изучили на дэшборде.  ')
             st.markdown('**Оцените каждое утверждение по шкале от 1 до 7** (1 - полностью НЕ согласен, 7 - полностью согласен)')
             st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)    
             trust1 = st.radio("Модель обманчива", ANSWER_OPTIONS) 
