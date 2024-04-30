@@ -46,9 +46,9 @@ with tab1:
                 st.table(vars_df)
         with col2:
                 st.markdown('### Важность переменных')
+                shap.summary_plot(shap_values, df, plot_type='bar', show = False)
                 plt.title('Feature importance based on SHAP values')
                 plt.xlabel("Среднее SHAP value")
-                shap.summary_plot(shap_values, df, plot_type='bar')
                 st.pyplot()
         
         # Row B
