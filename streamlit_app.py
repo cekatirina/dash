@@ -72,7 +72,8 @@ with tab1:
                 shap.waterfall_plot(shap.Explanation(values=shap_values[3842],
                             base_values=explainer.expected_value[0],
                             data=example2,
-                            feature_names=df.columns))
+                            feature_names=df.columns), show = False)
+                plt.xlabel("SHAP значение")
                 st.pyplot()
 
 with tab2:
