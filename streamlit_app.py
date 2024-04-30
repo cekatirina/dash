@@ -31,7 +31,6 @@ tab1, tab2 = st.tabs(["Дэшборд", "Анкета"])
 
 with tab1:
         st.title('Общая статистика по модели')
-        st.write('This is gonna be XAI dashboard')
         
         # Row A
         vars = [['education', 'Уровень образования сотрудника'], ['gender', 'Пол сотрудника'], 
@@ -53,8 +52,7 @@ with tab1:
                 st.pyplot()
         
         # Row B
-        st.markdown('### Важность предикторов')
-        plt.title('Feature contribution based on SHAP values')
+        st.markdown('### Влияние средней оценки за обучение на предсказание')
         shap.dependence_plot("avg_training_score", shap_values, df, feature_names=df.columns, interaction_index="gender")
         st.pyplot()
 
