@@ -53,6 +53,7 @@ with tab1:
         
         # Row B
         st.markdown('### Влияние средней оценки за обучение на предсказание')
+        plt.title('Feature importance based on SHAP values')
         shap.dependence_plot("avg_training_score", shap_values, df, feature_names=df.columns, interaction_index="gender")
         st.pyplot()
 
