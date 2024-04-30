@@ -89,7 +89,7 @@ with tab2:
         ]
         with st.form(key="dash_form"):
             st.markdown('##### Доверие модели')
-            st.markdown('**Оцените каждое утверждение по шкале от 1 до 7** (1 - полностью НЕ согласен, 7 - полностью согласен)')
+            st.markdown('Оцените каждое утверждение по шкале от 1 до 7 (1 - полностью НЕ согласен, 7 - полностью согласен)')
             st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)    
             trust1 = st.radio("Модель обманчива", ANSWER_OPTIONS) 
             trust2 = st.radio("Модель принимает решения нечестно", ANSWER_OPTIONS)
@@ -102,4 +102,5 @@ with tab2:
             trust9 = st.radio("Я доверяю результатам модели", ANSWER_OPTIONS)
             trust10 = st.radio("Я понимаю почему модель дает определенные результаты", ANSWER_OPTIONS)
             st.markdown('##### Сложность задачи')
+            nasa1 = st.radio("Насколько сложно вам было интерпретировать графики из дэшборда?", ANSWER_OPTIONS, captions = ["Совсем не сложно", "", "", "", "", "", "Очень сложно")
             submit_button = st.form_submit_button(label="Отправить анкету")
