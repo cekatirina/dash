@@ -47,14 +47,13 @@ with tab1:
         with col2:
                 st.markdown('### Важность переменных')
                 shap.summary_plot(shap_values, df, plot_type='bar', show = False)
-                plt.title('Feature importance based on SHAP values')
-                plt.xlabel("Среднее SHAP value")
+                plt.xlabel("Среднее SHAP значение")
                 st.pyplot()
         
         # Row B
         st.markdown('### Влияние средней оценки за обучение на предсказание')
-        plt.title('Feature importance based on SHAP values')
-        shap.dependence_plot("avg_training_score", shap_values, df, feature_names=df.columns, interaction_index="gender")
+        shap.dependence_plot("avg_training_score", shap_values, df, feature_names=df.columns, interaction_index="gender", show = False)
+        plt.ylabel("SHAP значения для avg_training_score")
         st.pyplot()
 
         # Row C
