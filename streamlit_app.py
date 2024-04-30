@@ -89,7 +89,6 @@ with tab2:
         ]
         with st.form(key="dash_form"):
             st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)    
-            dificulty = st.radio(
-                    "Модель обманчива",
-                    ANSWER_OPTIONS)        
+            trust1 = st.radio("Модель обманчива", ANSWER_OPTIONS) 
+            trust2 = st.radio("Модель принимает решения нечестно", ANSWER_OPTIONS) 
             submit_button = st.form_submit_button(label="Отправить анкету")
