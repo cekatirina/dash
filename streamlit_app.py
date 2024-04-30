@@ -9,8 +9,8 @@ import shap
 import matplotlib.pyplot as plt
 from shapash.explainer.smart_explainer import SmartExplainer
 
-#with open('style.css') as f:
- #       st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+with open('style.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 y = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/y_test.csv')
@@ -62,14 +62,14 @@ with tab1:
         st.title('Информация по индивидуальным предсказаниям')
         c1, c2 = st.columns(2)
         with c1:
-                st.markdown('### Кейс 1 (ID = 1432)')
+                st.markdown('### Пример 1 (ID = 1432)')
                 shap.waterfall_plot(shap.Explanation(values=shap_values[1432],
                             base_values=explainer.expected_value[0],
                             data=example1,
                             feature_names=df.columns))
                 st.pyplot()
         with c2:
-                st.markdown('### Кейс 2 (ID = 3842)')
+                st.markdown('### Пример 2 (ID = 3842)')
                 shap.waterfall_plot(shap.Explanation(values=shap_values[3842],
                             base_values=explainer.expected_value[0],
                             data=example2,
