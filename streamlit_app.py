@@ -14,17 +14,20 @@ with open('style.css') as f:
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 y = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/y_test.csv')
-df_prob = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test_prob.csv')
 modelGB = pickle.load(open('modelGB.pkl', 'rb'))
 prediction = modelGB.predict(df)
 prediction_proba = modelGB.predict_proba(df)
-explainer = shap.Explainer(modelGB)
-shap_values = explainer.shap_values(df)
 
-example1 = df.iloc[1432]
+df_prob = df
+df_prob["prom"] = prediction_proba[:,1]
+
+explainer = shap.Explainer(modelGB)
+shap_values = explainer.shap_values(df_prob)
+
+example1 = df_prob.iloc[1432]
 example1 = example1.to_numpy()
 
-example2 = df.iloc[3842]
+example2 = df_prob.iloc[3842]
 example2 = example2.to_numpy()
 
 tab1, tab2 = st.tabs(["Дэшборд", "Анкета"])
@@ -46,13 +49,13 @@ with tab1:
                 st.table(vars_df)
         with col2:
                 st.markdown('### Важность переменных')
-                shap.summary_plot(shap_values, df, plot_type='bar', show = False)
+                shap.summary_plot(shap_values, df_prob, plot_type='bar', show = False)
                 plt.xlabel("Среднее SHAP значение")
                 st.pyplot()
         
         # Row B
         st.markdown('### Влияние средней оценки за обучение на предсказание')
-        shap.dependence_plot("avg_training_score", shap_values, df, feature_names=df.columns, interaction_index="gender", show = False)
+        shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
         plt.ylabel("SHAP значения\n для avg_training_score")
         st.pyplot()
 
@@ -64,7 +67,7 @@ with tab1:
                 shap.waterfall_plot(shap.Explanation(values=shap_values[1432],
                             base_values=explainer.expected_value[0],
                             data=example1,
-                            feature_names=df.columns,), show = False)
+                            feature_names=df_prob.columns,), show = False)
                 plt.xlabel("SHAP значение")
                 st.pyplot()
         with c2:
@@ -72,7 +75,7 @@ with tab1:
                 shap.waterfall_plot(shap.Explanation(values=shap_values[3842],
                             base_values=explainer.expected_value[0],
                             data=example2,
-                            feature_names=df.columns), show = False)
+                            feature_names=df_prob.columns), show = False)
                 plt.xlabel("SHAP значение")
                 st.pyplot()
 
