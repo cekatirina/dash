@@ -9,8 +9,7 @@ import shap
 import matplotlib.pyplot as plt
 from shapash.explainer.smart_explainer import SmartExplainer
 
-with open('style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 y = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/y_test.csv')
