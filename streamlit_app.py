@@ -64,7 +64,8 @@ with tab1:
         with c1:
                 st.markdown('##### Как :blue[средняя оценка за обучение] влияет на предсказание')
                 shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
-                plt.ylabel("SHAP значения\n для avg_training_score")
+                plt.ylabel("SHAP значения\n для Ср. балла за курсы")
+                plt.xlabel("SHAP значения\n для Ср. балл за курсы")
                 st.pyplot()
         with c2:
                 st.markdown('##### Как :blue[рейтинг] за предыдущий год влияет на предсказание')
