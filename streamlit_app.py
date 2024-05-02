@@ -56,7 +56,7 @@ with tab1:
                 st.table(vars_df)
         with col2:
                 st.markdown('##### Важность переменных')
-                shap.summary_plot(shap_values, df_prob, plot_type='bar', feature_names=names, show = False)
+                shap.summary_plot(shap_values, df_prob, plot_type='bar', show = False)
                 plt.xlabel("Среднее SHAP значение")
                 st.pyplot()
         
