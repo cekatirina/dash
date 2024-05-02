@@ -58,7 +58,7 @@ with tab1:
                 st.table(vars_df)
         with col2:
                 st.markdown('##### Важность переменных')
-                st.markdown('Какие переменные повлияли на предсказания модели больше всего? (Чем дальше от нуля SHAP значение, тем больше влияния переменная имела на предсказания)')
+                st.markdown('Какие переменные повлияли на предсказания модели больше всего?')
                 shap.summary_plot(shap_values, df_prob, plot_type='bar', feature_names = names, max_display=18, show = False)
                 plt.xlabel("Среднее SHAP значение")
                 st.pyplot()
