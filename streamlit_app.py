@@ -48,7 +48,7 @@ with tab1:
                 st.markdown('##### Описание переменных')
                 st.table(vars_df)
         with col2:
-                st.markdown('### Важность переменных')
+                st.markdown('##### Важность переменных')
                 shap.summary_plot(shap_values, df_prob, plot_type='bar', show = False)
                 plt.xlabel("Среднее SHAP значение")
                 st.pyplot()
@@ -56,12 +56,12 @@ with tab1:
         # Row B
         c1, c2 = st.columns(2)
         with c1:
-                st.markdown('### Влияние средней оценки за обучение на предсказание')
+                st.markdown('##### Как *средняя оценка за обучение* влияет на предсказание')
                 shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
                 plt.ylabel("SHAP значения\n для avg_training_score")
                 st.pyplot()
         with c2:
-                st.markdown('### Влияние рейтинга за предыдущий год на предсказание')
+                st.markdown('##### Как *рейтинг* за предыдущий год влияет на предсказание')
                 shap.dependence_plot("previous_year_rating", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
                 plt.ylabel("SHAP значения\n для previous_year_rating")
                 st.pyplot()
@@ -70,7 +70,7 @@ with tab1:
         st.title('Информация по индивидуальным предсказаниям')
         c1, c2 = st.columns(2)
         with c1:
-                st.markdown('### Пример 1 (ID = 1432)')
+                st.markdown('##### Пример 1 (ID = 1432)')
                 shap.waterfall_plot(shap.Explanation(values=shap_values[1432],
                             base_values=explainer.expected_value[0],
                             data=example1,
@@ -78,7 +78,7 @@ with tab1:
                 plt.xlabel("SHAP значение")
                 st.pyplot()
         with c2:
-                st.markdown('### Пример 2 (ID = 3842)')
+                st.markdown('##### Пример 2 (ID = 3842)')
                 shap.waterfall_plot(shap.Explanation(values=shap_values[3842],
                             base_values=explainer.expected_value[0],
                             data=example2,
