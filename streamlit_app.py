@@ -33,7 +33,7 @@ example2 = example2.to_numpy()
 tab1, tab2 = st.tabs(["Дэшборд", "Анкета"])
 
 with tab1:
-        st.title('Общая статистика по модели')
+        st.markdown('### Общая статистика по модели')
         
         # Row A
         vars = [['education', 'Уровень образования сотрудника'], ['gender', 'Пол сотрудника'], 
@@ -45,7 +45,7 @@ with tab1:
         vars_df = pd.DataFrame(vars, columns=['Переменная', 'Описание'])
         col1, col2 = st.columns(2)
         with col1:
-                st.markdown('### Описание переменных')
+                st.markdown('Описание переменных')
                 st.table(vars_df)
         with col2:
                 st.markdown('### Важность переменных')
