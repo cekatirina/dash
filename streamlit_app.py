@@ -45,7 +45,7 @@ with tab1:
         vars_df = pd.DataFrame(vars, columns=['Переменная', 'Описание'])
         col1, col2 = st.columns(2)
         with col1:
-                st.markdown('###### Описание переменных')
+                st.markdown('##### Описание переменных')
                 st.table(vars_df)
         with col2:
                 st.markdown('### Важность переменных')
