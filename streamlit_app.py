@@ -32,7 +32,7 @@ shap_values = explainer.shap_values(df_prob)
 example1 = df_prob.iloc[1432]
 example1 = example1.to_numpy()
 
-example2 = df_prob.iloc[3842]
+example2 = df_prob.iloc[725]
 example2 = example2.to_numpy()
 
 tab1, tab2 = st.tabs(["Дэшборд", "Анкета"])
