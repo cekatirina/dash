@@ -18,7 +18,7 @@ prediction = modelGB.predict(df)
 prediction_proba = modelGB.predict_proba(df)
 
 df_prob = df
-df_prob["Вероятность"] = prediction_proba[:,1]
+df_prob["Вероятность повышения"] = prediction_proba[:,1]
 
 names = ['Образование', 'Отдел: HR', 'Кол-во курсов', 'Возраст', 
          'Рейтинг', 'Отдел: Финансы', 'Отдел: Юридический', 'Продолжительность работы', 'Пол',
@@ -62,13 +62,13 @@ with tab1:
         c1, c2 = st.columns(2)
         with c1:
                 st.markdown('##### Как :blue[средняя оценка за обучение] влияет на предсказание')
-                shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="Вероятность", show = False)
+                shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="Вероятность повышения", show = False)
                 plt.ylabel("SHAP значения\n для Ср. балла за курсы")
                 plt.xlabel("Ср. балл за курсы")
                 st.pyplot()
         with c2:
                 st.markdown('##### Как :blue[рейтинг] за предыдущий год влияет на предсказание')
-                shap.dependence_plot("previous_year_rating", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="Вероятность", show = False)
+                shap.dependence_plot("previous_year_rating", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="Вероятность повышения", show = False)
                 plt.ylabel("SHAP значения\n для Рейтинга")
                 plt.xlabel("Рейтинг")
                 st.pyplot()
