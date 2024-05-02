@@ -79,7 +79,7 @@ with tab1:
         st.markdown('### Информация по индивидуальным предсказаниям')
         c1, c2 = st.columns(2)
         with c1:
-                st.markdown('##### Пример 1 (ID = 1432)')
+                st.markdown('##### Пример 1 (вероятность повышения: 79%)')
                 shap.waterfall_plot(shap.Explanation(values=shap_values[1432],
                             base_values=explainer.expected_value[0],
                             data=example1,
@@ -87,8 +87,8 @@ with tab1:
                 plt.xlabel("SHAP значение")
                 st.pyplot()
         with c2:
-                st.markdown('##### Пример 2 (ID = 3842)')
-                shap.waterfall_plot(shap.Explanation(values=shap_values[3842],
+                st.markdown('##### Пример 2 (вероятность повышения: 58%)')
+                shap.waterfall_plot(shap.Explanation(values=shap_values[725],
                             base_values=explainer.expected_value[0],
                             data=example2,
                             feature_names=names), show = False)
