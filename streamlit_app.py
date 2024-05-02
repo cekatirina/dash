@@ -86,7 +86,7 @@ with tab1:
                 shap.waterfall_plot(shap.Explanation(values=shap_values[1432],
                             base_values=explainer.expected_value[0],
                             data=example1,
-                            feature_names=names), max_display = 15, show = False)
+                            feature_names=names), show = False)
                 plt.xlabel("SHAP значение")
                 st.pyplot()
         with c2:
@@ -94,7 +94,7 @@ with tab1:
                 shap.waterfall_plot(shap.Explanation(values=shap_values[725],
                             base_values=explainer.expected_value[0],
                             data=example2,
-                            feature_names=names), max_display = 15, show = False)
+                            feature_names=names), show = False)
                 plt.xlabel("SHAP значение")
                 st.pyplot()
 
