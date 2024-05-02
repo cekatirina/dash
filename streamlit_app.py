@@ -21,12 +21,12 @@ prediction_proba = modelGB.predict_proba(df)
 df_prob = df
 df_prob["prom"] = prediction_proba[:,1]
 
-names = ['education', 'gender', 'no_of_trainings', 'age', 'previous_year_rating',
-       'length_of_service', 'awards_won', 'avg_training_score',
-       'department_Finance', 'department_HR', 'department_Legal',
-       'department_Operations', 'department_Procurement', 'department_R&D',
-       'department_Sales & Marketing', 'department_Technology',
-       'recruitment_channel_referred', 'recruitment_channel_sourcing', 'prom']
+names = ['Ср. балл за курсы', 'Отдел: Продажи & Маркетинг', 'Рейтинг', 'Отдел: Операционный', 'Возраст',
+       'Отдел: Технологии', 'Отдел: Закупки', 'Отдел: Финансы',
+       'Продолжительность работы', 'Образование', 'Отдел: Юридический',
+       'Кол-во наград', 'Кол-во курсов', 'Отдел: HR',
+       'Пол', 'Реферальная программа',
+       'Обычный поиск', 'Отдел: Исследование и разработки', 'prom']
 
 explainer = shap.Explainer(modelGB)
 shap_values = explainer.shap_values(df_prob)
@@ -56,7 +56,7 @@ with tab1:
                 st.table(vars_df)
         with col2:
                 st.markdown('##### Важность переменных')
-                shap.summary_plot(shap_values, df_prob, plot_type='bar', show = False)
+                shap.summary_plot(shap_values, df_prob, plot_type='bar', feature_names=names, show = False)
                 plt.xlabel("Среднее SHAP значение")
                 st.pyplot()
         
