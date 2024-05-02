@@ -55,7 +55,7 @@ with tab1:
                 st.table(vars_df)
         with col2:
                 st.markdown('##### Важность переменных')
-                shap.summary_plot(shap_values, df_prob, plot_type='bar', feature_names=names, show = False)
+                shap.summary_plot(shap_values, df_prob, plot_type='bar', show = False)
                 plt.xlabel("Среднее SHAP значение")
                 st.pyplot()
         
@@ -63,12 +63,12 @@ with tab1:
         c1, c2 = st.columns(2)
         with c1:
                 st.markdown('##### Как :blue[средняя оценка за обучение] влияет на предсказание')
-                shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=names, interaction_index="prom", show = False)
+                shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
                 plt.ylabel("SHAP значения\n для avg_training_score")
                 st.pyplot()
         with c2:
                 st.markdown('##### Как :blue[рейтинг] за предыдущий год влияет на предсказание')
-                shap.dependence_plot("previous_year_rating", shap_values, df_prob, feature_names=names, interaction_index="prom", show = False)
+                shap.dependence_plot("previous_year_rating", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
                 plt.ylabel("SHAP значения\n для previous_year_rating")
                 st.pyplot()
 
