@@ -56,7 +56,7 @@ with tab1:
         # Row B
         c1, c2 = st.columns(2)
         with c1:
-                st.markdown('##### Как *средняя оценка за обучение* влияет на предсказание')
+                st.markdown('##### Как :rainbow[средняя оценка за обучение] влияет на предсказание')
                 shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
                 plt.ylabel("SHAP значения\n для avg_training_score")
                 st.pyplot()
@@ -67,7 +67,7 @@ with tab1:
                 st.pyplot()
 
         # Row C
-        st.title('Информация по индивидуальным предсказаниям')
+        st.markdown('### Информация по индивидуальным предсказаниям')
         c1, c2 = st.columns(2)
         with c1:
                 st.markdown('##### Пример 1 (ID = 1432)')
@@ -87,7 +87,7 @@ with tab1:
                 st.pyplot()
 
 with tab2:
-        st.title('Ваши впечатления от дэшборда')
+        st.markdown('### Ваши впечатления от дэшборда')
         ANSWER_OPTIONS = [
             "1",
             "2",
