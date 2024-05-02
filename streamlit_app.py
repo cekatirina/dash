@@ -27,12 +27,6 @@ names = ['Образование', 'Пол', 'Кол-во курсов', 'Воз
          'Отдел: Исследование и разработки',  'Отдел: Продажи & Маркетинг', 'Отдел: Технологии', 'Реферальная программа',
          'Обычный поиск',  'prom']
 
-df_prob = df_prob.set_axis(['Образование', 'Пол', 'Кол-во курсов', 'Возраст', 
-         'Рейтинг', 'Продолжительность работы', 'Кол-во наград', 'Ср. балл за курсы', 'Отдел: Финансы',
-         'Отдел: HR', 'Отдел: Юридический', 'Отдел: Операционный', 'Отдел: Закупки',
-         'Отдел: Исследование и разработки',  'Отдел: Продажи & Маркетинг', 'Отдел: Технологии', 'Реферальная программа',
-         'Обычный поиск',  'prom'], axis=1)
-
 explainer = shap.Explainer(modelGB)
 shap_values = explainer.shap_values(df_prob)
 
@@ -69,12 +63,12 @@ with tab1:
         c1, c2 = st.columns(2)
         with c1:
                 st.markdown('##### Как :blue[средняя оценка за обучение] влияет на предсказание')
-                shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
+                shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=names, interaction_index="prom", show = False)
                 plt.ylabel("SHAP значения\n для avg_training_score")
                 st.pyplot()
         with c2:
                 st.markdown('##### Как :blue[рейтинг] за предыдущий год влияет на предсказание')
-                shap.dependence_plot("previous_year_rating", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
+                shap.dependence_plot("previous_year_rating", shap_values, df_prob, feature_names=names, interaction_index="prom", show = False)
                 plt.ylabel("SHAP значения\n для previous_year_rating")
                 st.pyplot()
 
