@@ -54,10 +54,17 @@ with tab1:
                 st.pyplot()
         
         # Row B
-        st.markdown('### Влияние средней оценки за обучение на предсказание')
-        shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
-        plt.ylabel("SHAP значения\n для avg_training_score")
-        st.pyplot()
+        c1, c2 = st.columns(2)
+        with c1:
+                st.markdown('### Влияние средней оценки за обучение на предсказание')
+                shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
+                plt.ylabel("SHAP значения\n для avg_training_score")
+                st.pyplot()
+        with c2:
+                st.markdown('### Влияние рейтинга за предыдущий год на предсказание')
+                shap.dependence_plot("previous_year_rating", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="prom", show = False)
+                plt.ylabel("SHAP значения\n для previous_year_rating")
+                st.pyplot()
 
         # Row C
         st.title('Информация по индивидуальным предсказаниям')
@@ -104,10 +111,4 @@ with tab2:
             trust8 = st.radio("На результаты модели можно с уверенностью положиться", ANSWER_OPTIONS, index=None)
             trust9 = st.radio("Я доверяю результатам модели", ANSWER_OPTIONS, index=None)
             trust10 = st.radio("Я понимаю почему модель дает определенные результаты", ANSWER_OPTIONS, index=None)
-            st.markdown('##### Сложность задачи')
-            nasa1 = st.radio("Насколько сложно вам было интерпретировать графики из дэшборда?", ANSWER_OPTIONS, captions = ["Совсем не сложно", "", "", "", "", "", "Очень сложно"], index=None)
-            nasa2 = st.radio("Насколько темп выполнения задачи (интерпретация дэшборда) был быстрым для вас?", ANSWER_OPTIONS, captions = ["Совсем не быстрый", "", "", "", "", "", "Очень быстрый"], index=None)
-            nasa3 = st.radio("Насколько успешно вы выполнили то, что вас попросили сделать (интерпретация дэшборда)?", ANSWER_OPTIONS, captions = ["Совсем не успешно", "", "", "", "", "", "Очень успешно"], index=None)
-            nasa4 = st.radio("Насколько много усилий вам пришлось приложить для того чтобы выполнить задачу?", ANSWER_OPTIONS, captions = ["Совсем не много", "", "", "", "", "", "Очень много"], index=None)
-            nasa5 = st.radio("Насколько вы были неуверенны в себе, разочарованы и раздражены во время выполнения задачи?", ANSWER_OPTIONS, captions = ["Не испытывал эти эмоции", "", "", "", "", "", "Очень сильно"], index=None)
             submit_button = st.form_submit_button(label="Отправить анкету")
