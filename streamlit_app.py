@@ -47,7 +47,7 @@ with tab1:
                 st.image('female.png', width=100)
         with column2:
                 st.markdown('##### Сотрудник 2')
-                st.image('male.png', , width=100)
+                st.image('male.png', width=100)
             
 with tab2:
         st.markdown('### Общая статистика по модели')
