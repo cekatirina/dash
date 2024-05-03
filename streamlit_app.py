@@ -37,9 +37,12 @@ example1 = example1.to_numpy()
 example2 = df_prob.iloc[725]
 example2 = example2.to_numpy()
 
-tab1, tab2 = st.tabs(["Дэшборд", "Анкета"])
+tab1, tab2, tab3 = st.tabs(["Персоны", "Дэшборд", "Анкета"])
 
 with tab1:
+        st.markdown('### Персоны')
+
+with tab2:
         st.markdown('### Общая статистика по модели')
         
         # Row A
@@ -98,7 +101,7 @@ with tab1:
                 plt.xlabel("SHAP значение")
                 st.pyplot()
 
-with tab2:
+with tab3:
         st.markdown('### Ваши впечатления от дэшборда')
         ANSWER_OPTIONS = [
             "1",
