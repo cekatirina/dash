@@ -41,7 +41,12 @@ tab1, tab2, tab3 = st.tabs(["Персоны", "Дэшборд", "Анкета"])
 
 with tab1:
         st.markdown('### Персоны')
-
+        column1, column2 = st.columns(2)
+        with column1:
+                st.markdown('##### Сотрудник 1')
+        with column2:
+                st.markdown('##### Сотрудник 2')
+            
 with tab2:
         st.markdown('### Общая статистика по модели')
         
