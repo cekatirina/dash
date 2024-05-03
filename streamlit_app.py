@@ -44,8 +44,10 @@ with tab1:
         column1, column2 = st.columns(2)
         with column1:
                 st.markdown('##### Сотрудник 1')
+                st.image('female.png')
         with column2:
                 st.markdown('##### Сотрудник 2')
+                st.image('male.png')
             
 with tab2:
         st.markdown('### Общая статистика по модели')
