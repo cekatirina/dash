@@ -160,7 +160,7 @@ with tab4:
                 st.pyplot()
         with c2:
                 st.markdown('##### Как :blue[продолжительность работы] влияет на предсказание')
-                shap.dependence_plot("length_of_service	", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="Вероятность повышения", show = False)
+                shap.dependence_plot("length_of_service", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="Вероятность повышения", show = False)
                 plt.ylabel("SHAP значения\n для Продолжительности работы")
                 plt.xlabel("Продолжительность работы")
                 st.pyplot()
