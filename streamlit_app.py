@@ -37,7 +37,7 @@ example1 = example1.to_numpy()
 example2 = df_prob.iloc[725]
 example2 = example2.to_numpy()
 
-tab1, tab2, tab3 = st.tabs(["Персоны", "Дэшборд", "Анкета"])
+tab1, tab2, tab3, tab4 = st.tabs(["Персоны", "Дэшборд", "Анкета", "Доп. материалы"])
 
 with tab1:
         st.markdown('### Персоны')
@@ -90,7 +90,7 @@ with tab2:
         # Row B
         c1, c2 = st.columns(2)
         with c1:
-                st.markdown('##### Как :blue[средняя оценка за обучение] влияет на предсказание')
+                st.markdown('##### Как :blue[средний балл за курсы] влияет на предсказание')
                 shap.dependence_plot("avg_training_score", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="Вероятность повышения", show = False)
                 plt.ylabel("SHAP значения\n для Ср. балла за курсы")
                 plt.xlabel("Ср. балл за курсы")
@@ -148,3 +148,33 @@ with tab3:
             trust9 = st.radio("Я доверяю результатам модели", ANSWER_OPTIONS, index=None)
             trust10 = st.radio("Я понимаю, почему модель дает определенные результаты", ANSWER_OPTIONS, index=None)
             submit_button = st.form_submit_button(label="Отправить анкету")
+with tab4:
+        st.markdown('### Дополнительные графики')
+        # Row A
+        c1, c2 = st.columns(2)
+        with c1:
+                st.markdown('##### Как :blue[возраст] влияет на предсказание')
+                shap.dependence_plot("age", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="Вероятность повышения", show = False)
+                plt.ylabel("SHAP значения\n для Возраста")
+                plt.xlabel("Возраст")
+                st.pyplot()
+        with c2:
+                st.markdown('##### Как :blue[продолжительность работы] влияет на предсказание')
+                shap.dependence_plot("length_of_service	", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="Вероятность повышения", show = False)
+                plt.ylabel("SHAP значения\n для Продолжительности работы")
+                plt.xlabel("Продолжительность работы")
+                st.pyplot()
+        # Row B
+        col1, col2 = st.columns(2)
+        with col1:
+                st.markdown('##### Как :blue[награды] влияют на предсказание')
+                shap.dependence_plot("awards_won", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="Вероятность повышения", show = False)
+                plt.ylabel("SHAP значения\n для Наград")
+                plt.xlabel("Награды")
+                st.pyplot()
+        with col2:
+                st.markdown('##### Как :blue[кол-во пройденных курсов] влияет на предсказание')
+                shap.dependence_plot("no_of_trainings", shap_values, df_prob, feature_names=df_prob.columns, interaction_index="Вероятность повышения", show = False)
+                plt.ylabel("SHAP значения\n для Кол-ва курсов")
+                plt.xlabel("Кол-во курсов")
+                st.pyplot()
