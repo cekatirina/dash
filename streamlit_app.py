@@ -155,12 +155,13 @@ with tab3:
                                     "Q7": trust7,
                                     "Q8": trust8,
                                     "Q9": trust9,
-                                    "Q10": trust10
+                                    "Q10": trust10,
+                                    "Time": datetime()
                                 }
                             ]
                         )
                         # Add the new vendor data to the existing data
-                        existing_data = conn.read(spreadsheet = "https://docs.google.com/spreadsheets/d/1Izh4WHMK6QCLn_sCOKilM24CH21aDu9VcTzDobKLv6A/edit#gid=0", worksheet="Answers", usecols=list(range(10)))
+                        existing_data = conn.read(spreadsheet = "https://docs.google.com/spreadsheets/d/1Izh4WHMK6QCLn_sCOKilM24CH21aDu9VcTzDobKLv6A/edit#gid=0", worksheet="Answers", usecols=list(range(10)), ttl=5)
                         existing_data = existing_data.dropna(how="all")
                         updated_df = pd.concat([existing_data, answers], ignore_index=True)
 
