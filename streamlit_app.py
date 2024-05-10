@@ -13,7 +13,7 @@ with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 conn = st.connection("gsheets", type=GSheetsConnection)
-url = https://docs.google.com/spreadsheets/d/1qFogYPseOA3jw5v206PZXXKEvEWWI1Z5Fjy8_hXcQu8/edit#gid=0
+url = "https://docs.google.com/spreadsheets/d/1qFogYPseOA3jw5v206PZXXKEvEWWI1Z5Fjy8_hXcQu8/edit#gid=0"
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 y = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/y_test.csv')
