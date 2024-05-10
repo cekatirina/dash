@@ -8,6 +8,7 @@ import sklearn
 import shap
 import matplotlib.pyplot as plt
 from streamlit_gsheets import GSheetsConnection
+from datetime import datetime
 
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -168,7 +169,7 @@ with tab3:
                                     "Q8": trust8,
                                     "Q9": trust9,
                                     "Q10": trust10,
-                                    "Time": strftime("%Y-%m-%d")
+                                    "Time": datetime.now()
                                 }
                             ]
                         )
