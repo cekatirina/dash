@@ -1,6 +1,5 @@
 import streamlit as st
 st.set_page_config(layout="wide")
-
 import pandas as pd
 import plost
 import pickle
@@ -8,43 +7,33 @@ import sklearn
 import shap
 import matplotlib.pyplot as plt
 from streamlit_gsheets import GSheetsConnection
-from datetime import datetime
-
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 conn = st.connection("gsheets", type=GSheetsConnection)
-existing_data = conn.read(spreadsheet=spreadsheet, worksheet="Answers")
+existing_data = conn.read(worksheet="Answers", usecols=list(range(10)))
 existing_data = existing_data.dropna(how="all")
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 y = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/y_test.csv')
 df.iloc[[1432],[2]] = 5
-
 modelGB = pickle.load(open('modelGB.pkl', 'rb'))
 prediction = modelGB.predict(df)
 prediction_proba = modelGB.predict_proba(df)
-
 df_prob = df
 df_prob["Вероятность повышения"] = prediction_proba[:,1]
-
 names = ['Образование', 'Отдел: HR', 'Кол-во курсов', 'Возраст', 
          'Рейтинг', 'Продолжительность работы', 'Отдел: Юридический', 'Отдел: Финансы', 'Пол',
          'Награды', 'Отдел: Операционный', 'Отдел: Закупки', 'Отдел: Исследования и разработки',
          'Отдел: Продажи & Маркетинг',  'Отдел: Технологии', 'Реферальная программа', 'Обычный поиск',
          'Ср. балл за курсы', 'prom']
-
 explainer = shap.Explainer(modelGB)
 shap_values = explainer.shap_values(df_prob)
-
 example1 = df_prob.iloc[1432]
 example1 = example1.to_numpy()
-
 example2 = df_prob.iloc[725]
 example2 = example2.to_numpy()
-
 tab1, tab2, tab3, tab4 = st.tabs(["Персоны", "Дэшборд", "Анкета", "Доп. материалы"])
-
 with tab1:
         st.markdown('### Персоны')
         column1, column2 = st.columns(2)
@@ -107,7 +96,6 @@ with tab2:
                 plt.ylabel("SHAP значения\n для Рейтинга")
                 plt.xlabel("Рейтинг")
                 st.pyplot()
-
         # Row C
         st.markdown('### Информация по индивидуальным предсказаниям')
         c1, c2 = st.columns(2)
@@ -127,7 +115,6 @@ with tab2:
                             feature_names=names), show = False)
                 plt.xlabel("SHAP значение")
                 st.pyplot()
-
 with tab3:
         st.markdown('### Ваши впечатления от дэшборда')
         ANSWER_OPTIONS = [
@@ -139,6 +126,9 @@ with tab3:
             "6",
             "7"
         ]
+        existing_data = conn.read(worksheet="Answers")
+        existing_data = existing_data.dropna(how="all")
+        st.dataframe(existing_data)
         with st.form(key="dash_form"):
             st.markdown('##### Доверие модели')
             st.markdown('Оцените каждое утверждение по шкале от 1 до 7 (1 - полностью НЕ согласен, 7 - полностью согласен)')
@@ -168,14 +158,13 @@ with tab3:
                                     "Q7": trust7,
                                     "Q8": trust8,
                                     "Q9": trust9,
-                                    "Q10": trust10,
-                                    "Time": datetime.now()
+                                    "Q10": trust10
                                 }
                             ]
                         )
                         # Add the new vendor data to the existing data
                         updated_df = pd.concat([existing_data, answers], ignore_index=True)
-            
+
                         # Update Google Sheets with the new vendor data
                         conn.update(worksheet="Answers", data=updated_df)
                         st.success("Ответы записаны!")
