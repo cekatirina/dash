@@ -12,7 +12,7 @@ from streamlit_gsheets import GSheetsConnection
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-conn = st.experimental_connection("gsheets", type=GSheetsConnection)
+conn = st.connection("gsheets", type=GSheetsConnection)
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 y = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/y_test.csv')
