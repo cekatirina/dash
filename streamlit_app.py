@@ -7,9 +7,12 @@ import pickle
 import sklearn
 import shap
 import matplotlib.pyplot as plt
+from streamlit_gsheets import GSheetsConnection
 
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 y = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/y_test.csv')
@@ -133,6 +136,9 @@ with tab3:
             "6",
             "7"
         ]
+        existing_data = conn.read(worksheet="Vendors", usecols=list(range(6)), ttl=5)
+        existing_data = existing_data.dropna(how="all")
+        st.dataframe(existing_data)
         with st.form(key="dash_form"):
             st.markdown('##### Доверие модели')
             st.markdown('Оцените каждое утверждение по шкале от 1 до 7 (1 - полностью НЕ согласен, 7 - полностью согласен)')
