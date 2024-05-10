@@ -8,7 +8,6 @@ import sklearn
 import shap
 import matplotlib.pyplot as plt
 from streamlit_gsheets import GSheetsConnection
-from datetime import datetime
 
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -161,7 +160,7 @@ with tab3:
                             ]
                         )
                         # Add the new vendor data to the existing data
-                        existing_data = conn.read(spreadsheet = "https://docs.google.com/spreadsheets/d/1Izh4WHMK6QCLn_sCOKilM24CH21aDu9VcTzDobKLv6A/edit#gid=0", worksheet="Answers", usecols=list(range(10)), ttl=5)
+                        existing_data = conn.read(spreadsheet = "https://docs.google.com/spreadsheets/d/1Izh4WHMK6QCLn_sCOKilM24CH21aDu9VcTzDobKLv6A/edit#gid=0", worksheet="Answers", usecols=list(range(10)))
                         existing_data = existing_data.dropna(how="all")
                         updated_df = pd.concat([existing_data, answers], ignore_index=True)
 
