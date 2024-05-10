@@ -13,6 +13,8 @@ with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 conn = st.connection("gsheets", type=GSheetsConnection)
+existing_data = conn.read(worksheet="Answers", usecols=list(range(10)))
+existing_data = existing_data.dropna(how="all")
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 y = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/y_test.csv')
@@ -136,9 +138,6 @@ with tab3:
             "6",
             "7"
         ]
-        existing_data = conn.read(worksheet="Answers")
-        existing_data = existing_data.dropna(how="all")
-        st.dataframe(existing_data)
         with st.form(key="dash_form"):
             st.markdown('##### Доверие модели')
             st.markdown('Оцените каждое утверждение по шкале от 1 до 7 (1 - полностью НЕ согласен, 7 - полностью согласен)')
@@ -154,6 +153,31 @@ with tab3:
             trust9 = st.radio("Я доверяю результатам модели", ANSWER_OPTIONS, index=None)
             trust10 = st.radio("Я понимаю, почему модель дает определенные результаты", ANSWER_OPTIONS, index=None)
             submit_button = st.form_submit_button(label="Отправить анкету")
+
+            if submit_button:
+                        answers = pd.DataFrame(
+                            [
+                                {
+                                    "Q1": trust1,
+                                    "Q2": trust2,
+                                    "Q3": trust3,
+                                    "Q4": trust4,
+                                    "Q5": trust5,
+                                    "Q6": trust6,
+                                    "Q7": trust7,
+                                    "Q8": trust8,
+                                    "Q9": trust9,
+                                    "Q10": trust10,
+                                    "Time": strftime("%Y-%m-%d")
+                                }
+                            ]
+                        )
+                        # Add the new vendor data to the existing data
+                        updated_df = pd.concat([existing_data, answers], ignore_index=True)
+            
+                        # Update Google Sheets with the new vendor data
+                        conn.update(worksheet="Answers", data=updated_df)
+                        st.success("Ответы записаны!")
 with tab4:
         st.markdown('### Дополнительные графики')
         # Row A
