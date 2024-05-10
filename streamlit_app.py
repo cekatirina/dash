@@ -156,8 +156,7 @@ with tab3:
                                     "Q7": trust7,
                                     "Q8": trust8,
                                     "Q9": trust9,
-                                    "Q10": trust10,
-                                    "Time": datetime()
+                                    "Q10": trust10
                                 }
                             ]
                         )
