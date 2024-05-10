@@ -126,9 +126,6 @@ with tab3:
             "6",
             "7"
         ]
-        existing_data = conn.read(worksheet="Answers")
-        existing_data = existing_data.dropna(how="all")
-        st.dataframe(existing_data)
         with st.form(key="dash_form"):
             st.markdown('##### Доверие модели')
             st.markdown('Оцените каждое утверждение по шкале от 1 до 7 (1 - полностью НЕ согласен, 7 - полностью согласен)')
