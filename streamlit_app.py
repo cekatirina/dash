@@ -14,7 +14,7 @@ with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 conn = st.connection("gsheets", type=GSheetsConnection)
-existing_data = conn.read(spreadsheet=self._spreadsheet, worksheet="Answers")
+existing_data = conn.read(spreadsheet=spreadsheet, worksheet="Answers")
 existing_data = existing_data.dropna(how="all")
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
