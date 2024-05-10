@@ -13,8 +13,6 @@ with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 conn = st.connection("gsheets", type=GSheetsConnection)
-existing_data = conn.read(worksheet="Answers", usecols=list(range(10)))
-existing_data = existing_data.dropna(how="all")
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 y = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/y_test.csv')
@@ -165,6 +163,8 @@ with tab3:
                             ]
                         )
                         # Add the new vendor data to the existing data
+                        existing_data = conn.read(worksheet="Answers", usecols=list(range(10)))
+                        existing_data = existing_data.dropna(how="all")
                         updated_df = pd.concat([existing_data, answers], ignore_index=True)
 
                         # Update Google Sheets with the new vendor data
