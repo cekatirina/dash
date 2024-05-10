@@ -136,7 +136,7 @@ with tab3:
             "6",
             "7"
         ]
-        existing_data = conn.read(spreadsheet="Entry_Form", worksheet="Answers")
+        existing_data = conn.read(worksheet="Answers")
         existing_data = existing_data.dropna(how="all")
         st.dataframe(existing_data)
         with st.form(key="dash_form"):
