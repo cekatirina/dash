@@ -13,7 +13,6 @@ with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 conn = st.connection("gsheets", type=GSheetsConnection)
-url = "https://docs.google.com/spreadsheets/d/1qFogYPseOA3jw5v206PZXXKEvEWWI1Z5Fjy8_hXcQu8/edit#gid=0"
 
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 y = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/y_test.csv')
@@ -137,7 +136,7 @@ with tab3:
             "6",
             "7"
         ]
-        existing_data = conn.read(spreadsheet=url, usecols=list(range(10)), ttl=5)
+        existing_data = conn.read(spreadsheet="Entry_Form", worksheet="Answers")
         existing_data = existing_data.dropna(how="all")
         st.dataframe(existing_data)
         with st.form(key="dash_form"):
