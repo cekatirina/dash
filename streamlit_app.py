@@ -160,7 +160,7 @@ with tab3:
                             ]
                         )
                         # Add the new vendor data to the existing data
-                        existing_data = conn.read(spreadsheet = "https://docs.google.com/spreadsheets/d/1Izh4WHMK6QCLn_sCOKilM24CH21aDu9VcTzDobKLv6A/edit#gid=0", worksheet="Answers", usecols=list(range(10)))
+                        existing_data = conn.read(worksheet="Answers", usecols=list(range(10)))
                         existing_data = existing_data.dropna(how="all")
                         updated_df = pd.concat([existing_data, answers], ignore_index=True)
 
