@@ -191,6 +191,7 @@ with tab3:
                             return session
 
                         res = get_legacy_session().get(url)
+                        st.write(res)
                         existing_data = conn.read(spreadsheet=res, worksheet="Answers", usecols=list(range(10)))
                         existing_data = existing_data.dropna(how="all")
                         updated_df = pd.concat([existing_data, answers], ignore_index=True)
