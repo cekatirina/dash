@@ -11,9 +11,6 @@ import matplotlib.pyplot as plt
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-#conn = st.connection("gsheets", type=GSheetsConnection)
-#url = "https://docs.google.com/spreadsheets/d/1Izh4WHMK6QCLn_sCOKilM24CH21aDu9VcTzDobKLv6A/edit#gid=0"
-
 df = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/X_test.csv')
 y = pd.read_csv('https://raw.githubusercontent.com/cekatirina/data/master/y_test.csv')
 df.iloc[[1432],[2]] = 5
@@ -142,31 +139,6 @@ with tab3:
             trust10 = st.radio("Я понимаю, почему модель дает определенные результаты", ANSWER_OPTIONS, index=None)
             submit_button = st.form_submit_button(label="Отправить анкету")
 
-            #if submit_button:
-                        #answers = pd.DataFrame(
-                         #   [
-                          #      {
-                           #         "Q1": trust1,
-                            #        "Q2": trust2,
-                             #       "Q3": trust3,
-                              #      "Q4": trust4,
-                               #     "Q5": trust5,
-                                #    "Q6": trust6,
-                                 #   "Q7": trust7,
-                                  #  "Q8": trust8,
-                                   # "Q9": trust9,
-                                    #"Q10": trust10
-                                #}
-                            #]
-                        #)
-                        # Add the new data to the existing data
-                        #existing_data = conn.read(spreadsheet=url, worksheet="Answers", usecols=list(range(10)))
-                        #existing_data = existing_data.dropna(how="all")
-                        #updated_df = pd.concat([existing_data, answers], ignore_index=True)
-
-                        # Update Google Sheets with the new data
-                        #conn.update(worksheet="Answers", data=updated_df)
-                        #st.success("Ответы записаны!")
 with tab4:
         st.markdown('### Дополнительные графики')
         # Row A
