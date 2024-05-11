@@ -166,7 +166,7 @@ with tab3:
                             ]
                         )
                         # Add the new data to the existing data
-                        existing_data = conn.read(spreadsheet=res, worksheet="Answers", usecols=list(range(10)))
+                        existing_data = conn.read(spreadsheet=url, worksheet="Answers", usecols=list(range(10)))
                         existing_data = existing_data.dropna(how="all")
                         updated_df = pd.concat([existing_data, answers], ignore_index=True)
 
